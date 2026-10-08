@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="mb-4">Dashboard Overview</h2>
+
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card bg-primary text-white p-3 shadow-sm">
+            <h6>Total Customers</h6>
+            <h3>{{ total }}</h3>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-success text-white p-3 shadow-sm">
+            <h6>Active Connections</h6>
+            <h3>{{ active }}</h3>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-danger text-white p-3 shadow-sm">
+            <h6>Expired Connections</h6>
+            <h3>{{ expired }}</h3>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-dark text-white p-3 shadow-sm">
+            <h6>Expected Revenue</h6>
+            <h3>Rs. {{ revenue }}</h3>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow-sm p-3">
+    <h5 class="card-title">Customer List</h5>
+    <table class="table table-hover mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>IP Address</th>
+                <th>Package</th>
+                <th>Fee</th>
+                <th>Expiry Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in customers %}
+            <tr>
+                <td>{{ c.id }}</td>
+                <td><strong>{{ c.name }}</strong></td>
+                <td>{{ c.phone }}</td>
+                <td><code>{{ c.ip }}</code></td>
+                <td>{{ c.package }}</td>
+                <td>Rs. {{ c.fee }}</td>
+                <td>{{ c.expiry }}</td>
+                <td>
+                    {% if c.status == 'Active' %}
+                        <span class="badge bg-success">Active</span>
+                    {% else %}
+                        <span class="badge bg-danger">Expired</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

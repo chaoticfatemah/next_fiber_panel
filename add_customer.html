@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="mb-4">Add New Customer</h2>
+
+<div class="card p-4 shadow-sm col-md-8">
+    <form action="/add" method="POST">
+        <div class="mb-3">
+            <label class="form-label">Customer Name</label>
+            <input type="text" name="name" class="form-control" required placeholder="e.g. Hassan Raza">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Phone Number</label>
+            <input type="text" name="phone" class="form-control" required placeholder="03001234567">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">IP Address / Account ID</label>
+            <input type="text" name="ip" class="form-control" required placeholder="192.168.1.X">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Package Speed</label>
+            <select name="package" class="form-select">
+                <option value="5 Mbps - Basic">5 Mbps - Basic</option>
+                <option value="10 Mbps - Fiber Unlimited">10 Mbps - Fiber Unlimited</option>
+                <option value="20 Mbps - Pro">20 Mbps - Pro</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Monthly Fee (PKR)</label>
+            <input type="number" name="fee" class="form-control" required placeholder="1500">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Expiry Date</label>
+            <input type="date" name="expiry" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Customer</button>
+        <a href="/" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
